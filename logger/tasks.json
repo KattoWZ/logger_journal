@@ -1,0 +1,57 @@
+[
+    {
+        "Title": "DATA TEST",
+        "Time of Creation": "2025-07-30 13:55:14",
+        "Author": "DR",
+        "Content": [
+            {
+                "UUID": "926edee0-971f-4b30-a7e0-488d0c9d296b",
+                "Date and Time": "2025-07-30 13:55:29",
+                "Task": "Test entry",
+                "Status": "Plan",
+                "Progress": "[..........] 0%",
+                "Detail": ""
+            },
+            {
+                "UUID": "e299fea5-beac-4e24-9429-a67b0f89494a",
+                "Date and Time": "2025-07-30 13:56:06",
+                "Task": "Test entry",
+                "Status": "On Progress",
+                "Progress": "[\u2588.........] 10%",
+                "Detail": ""
+            },
+            {
+                "UUID": "0688cbe5-7a2a-4fe0-91d9-49748eb777da",
+                "Date and Time": "2025-07-30 14:46:54",
+                "Task": "Test more",
+                "Status": "On Progress",
+                "Progress": "[..........] 1%",
+                "Detail": ""
+            },
+            {
+                "UUID": "7b9d49b8-4e84-4951-93c3-5273d5dd21e2",
+                "Date and Time": "2025-07-30 14:47:07",
+                "Task": "Test multiple entry",
+                "Status": "On Progress",
+                "Progress": "[\u2588\u2588\u2588\u2588......] 40%",
+                "Detail": ""
+            },
+            {
+                "UUID": "5fc61449-8f61-472b-9583-f1eaba7182d2",
+                "Date and Time": "2025-07-30 14:47:59",
+                "Task": "Test auto close",
+                "Status": "On Progress",
+                "Progress": "[\u2588\u2588\u2588\u2588\u2588.....] 50%",
+                "Detail": "testing works"
+            },
+            {
+                "UUID": "28c83583-51de-45e5-b5b2-176c1988de6d",
+                "Date and Time": "2025-07-30 14:48:29",
+                "Task": "Testing auto clss",
+                "Status": "On Progress",
+                "Progress": "[\u2588\u2588\u2588\u2588\u2588.....] 55%",
+                "Detail": ""
+            }
+        ]
+    }
+]
