@@ -18,6 +18,7 @@ def main():
     clss()
     Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
     Path(JSON_DIR).mkdir(parents=True, exist_ok=True)
+    
     #menu actions dictionary
     MENU_ACTIONS = {
         "n" : jc,
@@ -78,10 +79,7 @@ def main():
         
             if action:
                 action() #Call the corresponding function!
-            # else:
-            #     clss()
-            #     print(f"'{choice}' is an Invalid option. Please enter the correct options.")
-            # print("hello")
+            
         except rm:
             continue
         except KeyboardInterrupt:

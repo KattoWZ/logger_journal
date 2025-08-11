@@ -1,6 +1,6 @@
 from core.quit import quit_program as qp
 # from core.jsonjournal import json_create as jc, json_update as ju
-from core.create import create_journal as jc
+from journal.core.create import create_journal as jc
 from core.update import update_journal as ju
 from core.edit import edit_entries as ee
 from core.convert import convert_whole as cw
