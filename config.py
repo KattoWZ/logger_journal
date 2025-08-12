@@ -1,8 +1,7 @@
-from utils.titleUI import print_title as pt, journTitle as jt
 from utils.inputValidator import reqInput as ri, ReturnToMenu as rm
+from utils.titleUI import print_title as pt, logTitle as lt
 from datetime import datetime
 from pathlib import Path
-import os
 #Function to scan the root folder if the default path is not met
 def find_project_root(marker="main.py"):
     current = Path(__file__).resolve().parent
@@ -16,10 +15,13 @@ def find_project_root(marker="main.py"):
 BASE_DIR = find_project_root()
 
 #Define logs dir
-JOURNAL_DIR = BASE_DIR / "journal"
+LOG_DIR = BASE_DIR / "logger" /"logs"
 
 #Define json dir
-JSON_DIR = BASE_DIR / "json"
+JSON_DIR = BASE_DIR / "logger" / "json"
+
+#Defines journal dir
+JOURNAL_DIR = BASE_DIR / "logger" / "journal"
 
 #Define utils dir
-UTILS_DIR = BASE_DIR / "utils"
+utils_dir = BASE_DIR / "utils"

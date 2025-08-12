@@ -1,12 +1,11 @@
-from config import  JOURNAL_DIR, ri, pt, jt, rm, JSON_DIR
-from utils.uxHelper import pause_and_clear as pclss
-from datetime import datetime
-from pathlib import Path
-from core.convert import converter_entry as ce, converter_title as ct
 import uuid
 import json
-import os
 import readline
+from datetime import datetime
+from config import  JOURNAL_DIR,JSON_DIR
+from utils.uxHelper import pause_and_clear as pclss
+from utils.inputValidator import reqInput as ri
+from journal.core.convert import converter_entry as ce, converter_title as ct
 
 
 def json_create():

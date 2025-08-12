@@ -1,6 +1,6 @@
+import json
 from config import JOURNAL_DIR, JSON_DIR
 from utils.inputValidator import input_filename
-import json
 
 def converter_title(json_path):
     try:

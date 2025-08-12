@@ -1,8 +1,11 @@
-from journal.main import main as journal_main
-from logger.main import main as logger_main
-from utils.uxHelper import clear_screen as clss
 from core.quit import quit_program
+from utils.uxHelper import clear_screen as clss
 from utils.inputValidator import input_menu, ReturnToMenu as rm
+from utils.titleUI import print_title as pt
+
+from logger.logger_main import main as logger_main
+
+from journal.journal_main import main as journal_main
 
 def main():
     clss()
@@ -28,8 +31,9 @@ def main():
             
         
             VISIBLE_OPTIONS=[
-               "Journal Program"
-               "Logger Program"
+               "Journal Program",
+               "Logger Program",
+               "Quit"
             ]
             
             choice = input_menu("> ", valid_keys=MENU_ACTIONS, visible_choices=VISIBLE_OPTIONS).strip().lower()

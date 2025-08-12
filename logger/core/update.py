@@ -1,15 +1,13 @@
-from config import LOG_DIR, JSON_DIR, ri,pt,lt, datetime, rm
-from utils.inputValidator import input_filename, input_status
-from core.convert import converter_entry as ce
-from utils.completer import enable_autocomplete
-from utils.uxHelper import clear_screen as clss
-from utils.progress_status import get_status, get_progress
-from utils.task_lists import load_tasks, get_task_with_autocomplete
-from pathlib import Path
-import os
 import json
-import readline
 import uuid
+
+from config import LOG_DIR, JSON_DIR,pt, datetime
+from utils.inputValidator import input_filename, input_menu
+from utils.uxHelper import clear_screen as clss
+
+from logger.utils.task_lists import load_tasks, get_task_with_autocomplete
+from logger.utils.progress_status import get_progress
+from logger.core.convert import converter_entry as ce
 
 def json_update():
     # enable_autocomplete()
@@ -34,8 +32,10 @@ def json_update():
         pt("Adding log entry")
         task_list=load_tasks(json_path)
         task = get_task_with_autocomplete(task_list)
-        # status = get_status()
-        status = input_status("Input Status: ")
+        
+        STATUS_OPTION = ["On Progress", "Finish", "Plan", "Canceled","!"]
+        
+        status = input_menu("Input Status: ", valid_keys=STATUS_OPTION, visible_choices=STATUS_OPTION)
         print(status)
         progress = get_progress(status)
         print(progress)

@@ -1,6 +1,6 @@
-from pathlib import Path
 import re
 import openpyxl
+from pathlib import Path
 from openpyxl.styles import Alignment
 from config import LOG_DIR
 from utils.inputValidator import reqInput as ri
