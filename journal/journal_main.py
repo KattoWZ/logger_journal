@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from config import JOURNAL_DIR, pt, rm,JSON_DIR
+from config import JOURNAL_DIR, pt, rm,JJSON_DIR
 from utils.uxHelper import clear_screen as clss
 from utils.inputValidator import input_menu
 from core.quit import quit_program as qp
@@ -13,7 +13,7 @@ from journal.core.convert import convert_whole as cw
 
 def main():
     Path(JOURNAL_DIR).mkdir(parents=True, exist_ok=True)
-    Path(JSON_DIR).mkdir(parents=True, exist_ok=True)
+    Path(JJSON_DIR).mkdir(parents=True, exist_ok=True)
     MENU_ACTIONS = {
         "n" : jc,
         "new journal" :jc,

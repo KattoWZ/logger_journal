@@ -1,13 +1,13 @@
 import json
-from config import JSON_DIR, ri, pt, rm, LOG_DIR
+from config import LJSON_DIR, ri, pt, rm, LOG_DIR
 from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
-from utils.inputValidator import input_menu
+from utils.inputValidator import input_menu, input_filename
 from logger.core.convert import converter_entry as ce, converter_title as ct, convert
 from logger.utils.progress_status import get_progress_optional
 
 def edit_entries():
-    filename = ri("Input the file name: ").strip().lower()
-    json_path = JSON_DIR / f"{filename}.json"
+    filename = input_filename("Input the file name: ",LJSON_DIR)
+    json_path = LJSON_DIR / f"{filename}.json"
     with open(json_path, "r") as f:
         data = json.load(f)
         
@@ -53,8 +53,8 @@ def edit_entries():
             print(" (S) Status and Progress")
             print(" (D) Detail")
 
-            EDIT_OPTIONS = ["Task", "Status and Progress", "Detail"]
-            edit_choice = input_menu("> ", valid_keys=EDIT_OPTIONS, visible_choices=EDIT_OPTIONS).strip().lower()
+            EDIT_OPTIONS = ["Task", "Status and Progress", "Detail","!"]
+            edit_choice = input_menu("> ", valid_keys=EDIT_OPTIONS, visible_choices=EDIT_OPTIONS).strip()
             if edit_choice in ("t", "Task"):
                 edit_entry['Task'] = input(f"New Task (current: {edit_entry['Task']}): ") or edit_entry['Task']
             
@@ -70,9 +70,9 @@ def edit_entries():
 
             elif edit_choice in ("d" , "Detail"):
                  edit_entry['Detail'] = input(f"New Detail (current: {edit_entry['Detail']}): ") or edit_entry['Detail']
-    
+                 print(f"New Detail: {edit_entry['Detail']}")
             else:
-                clss()
+                
                 print(f"'{edit_choice}' is an Invalid option. Please enter the correct options.")
             
         

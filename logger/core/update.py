@@ -1,7 +1,7 @@
 import json
 import uuid
 
-from config import LOG_DIR, JSON_DIR,pt, datetime
+from config import LOG_DIR, LJSON_DIR,pt, datetime
 from utils.inputValidator import input_filename, input_menu
 from utils.uxHelper import clear_screen as clss
 
@@ -11,10 +11,10 @@ from logger.core.convert import converter_entry as ce
 
 def json_update():
     # enable_autocomplete()
-    input_name = input_filename("Input log name: ",JSON_DIR)
+    input_name = input_filename("Input log name: ",LJSON_DIR)
     # input_name = ri("Input log name: ").strip().lower()
     filename = f"{input_name}"
-    json_path = JSON_DIR / f"{filename}.json"
+    json_path = LJSON_DIR / f"{filename}.json"
 
     #Check if the file is exist or not, returning to main menu when not found
     if not json_path.exists():

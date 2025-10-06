@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from config import LOG_DIR, JSON_DIR, pt, rm
+from config import LOG_DIR, LJSON_DIR, pt, rm
 from core.quit  import quit_program as qp
 from utils.uxHelper import clear_screen as clss
 from utils.inputValidator import input_menu
@@ -19,7 +19,7 @@ from logger.core.convert import convert_whole as cw
 def main():
     clss()
     Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
-    Path(JSON_DIR).mkdir(parents=True, exist_ok=True)
+    Path(LJSON_DIR).mkdir(parents=True, exist_ok=True)
     
     #menu actions dictionary
     MENU_ACTIONS = {

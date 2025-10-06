@@ -1,6 +1,6 @@
 import uuid
 import json
-from config import JOURNAL_DIR, ri, pt, datetime, JSON_DIR
+from config import JOURNAL_DIR, ri, pt, datetime, JJSON_DIR
 from journal.core.convert import converter_entry
 from utils.inputValidator import input_menu
 from utils.uxHelper import pause_and_clear as psc, clear_screen as clss
@@ -12,7 +12,7 @@ def update_journal():
     date_call = datetime.today()
     filename = date_call.strftime("%d-%m-%Y")
     file_path = JOURNAL_DIR /  f"{filename}.journal"
-    json_path = JSON_DIR /  f"{filename}.json"
+    json_path = JJSON_DIR /  f"{filename}.json"
     
     #check if file exists
     if not file_path.exists():

@@ -17,11 +17,14 @@ BASE_DIR = find_project_root()
 #Define logs dir
 LOG_DIR = BASE_DIR / "logger" /"logs"
 
-#Define json dir
-JSON_DIR = BASE_DIR / "logger" / "json"
+#Define json dir for logger
+LJSON_DIR = BASE_DIR / "logger" / "json"
 
 #Defines journal dir
-JOURNAL_DIR = BASE_DIR / "logger" / "journal"
+JOURNAL_DIR = BASE_DIR / "journal" / "journal"
+
+#Defines json dir for journal
+JJSON_DIR = BASE_DIR / "journal" / "json"
 
 #Define utils dir
 utils_dir = BASE_DIR / "utils"

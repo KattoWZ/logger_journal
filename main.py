@@ -11,10 +11,10 @@ def main():
     clss()
     #menu actions dictionary
     MENU_ACTIONS = {
-        "l" : journal_main,
-        "logger program" : journal_main,
-        "j" : logger_main,
-        "journal program" : logger_main,
+        "l" : logger_main,
+        "logger program" : logger_main,
+        "j" : journal_main,
+        "journal program" : journal_main,
         "q" : quit_program,
         "quit" : quit_program
     }

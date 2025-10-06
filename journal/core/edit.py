@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from config import JSON_DIR, ri, pt, rm, JOURNAL_DIR
+from config import JJSON_DIR, ri, pt, rm, JOURNAL_DIR
 from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
 from utils.inputValidator import input_menu
 from journal.core.convert import converter_entry as ce, converter_title as ct, convert
@@ -8,7 +8,7 @@ from journal.core.convert import converter_entry as ce, converter_title as ct, c
 def edit_entries():
     date_call = datetime.today()
     filename = date_call.strftime("%d-%m-%Y")
-    json_path = JSON_DIR / f"{filename}.json"
+    json_path = JJSON_DIR / f"{filename}.json"
     
     with open(json_path, "r") as f:
         data = json.load(f)

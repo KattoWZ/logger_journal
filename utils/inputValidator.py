@@ -72,7 +72,8 @@ def input_filename(message, path:Path, allow_return=True):
 # visible_choices = for what will be shown on the dropdown, the string must be included on valid_keys (mostly in form of list)
 # this method is to strict user to only inserting acceptable value
 
-def input_menu(message, valid_keys: Union[list[str], dict], visible_choices: list[str] = None, allow_return: bool=True):
+#this one is the old one, read below after this block, name is same, input_menu
+def old_input_menu(message, valid_keys: Union[list[str], dict], visible_choices: list[str] = None, allow_return: bool=True, case_sensitive: bool=False):
     
     keys_list = list(valid_keys.keys()) if isinstance(valid_keys, dict) else list(valid_keys)
     
@@ -82,7 +83,10 @@ def input_menu(message, valid_keys: Union[list[str], dict], visible_choices: lis
 
     class MenuValidator(Validator):
         def validate(self, document):
-            text = document.text.strip().lower()
+            if case_sensitive:
+                text = document.text.strip()
+            else:      
+                text = document.text.strip().lower()
             if not text:
                 raise ValidationError(message="Input cannot be empty.", cursor_position=0)
             if text not in valid_keys:
@@ -101,4 +105,41 @@ def input_menu(message, valid_keys: Union[list[str], dict], visible_choices: lis
         print("\nReturning to main menu...")
         raise ReturnToMenu()
     
+    return menu
+
+
+def input_menu(message, valid_keys: Union[list[str], dict], visible_choices: list[str] = None, allow_return: bool = True, case_sensitive: bool = False):
+    keys_list = list(valid_keys.keys()) if isinstance(valid_keys, dict) else list(valid_keys)
+
+    # Only show the "long" commands in the autocomplete
+    visible_choices = visible_choices or list(set(keys_list) - {k for k in keys_list if len(k) <= 2}) + list("!")
+    completer = WordCompleter(visible_choices, ignore_case=True)
+
+    class MenuValidator(Validator):
+        def validate(self, document):
+            if case_sensitive:
+                valid_set = valid_keys
+                text = document.text.strip()
+            else:
+                valid_set = [k.lower() for k in valid_keys]
+                text = document.text.strip().lower()
+
+            if not text:
+                raise ValidationError(message="Input cannot be empty.", cursor_position=0)
+            if text not in valid_set:
+                raise ValidationError(message="Invalid option. Try again.", cursor_position=0)
+
+    session = PromptSession()
+    menu = session.prompt(
+        message,
+        completer=completer,
+        validator=MenuValidator(),
+        validate_while_typing=False
+    ).strip()
+
+    if allow_return and menu == "!":
+        clss()
+        print("\nReturning to main menu...")
+        raise ReturnToMenu()
+
     return menu
