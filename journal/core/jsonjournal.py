@@ -1,12 +1,11 @@
-from config import  JOURNAL_DIR, ri, pt, jt, rm, JSON_DIR
-from utils.uxHelper import pause_and_clear as pclss
-from datetime import datetime
-from pathlib import Path
-from core.convert import converter_entry as ce, converter_title as ct
 import uuid
 import json
-import os
 import readline
+from datetime import datetime
+from config import  JOURNAL_DIR,JJSON_DIR
+from utils.uxHelper import pause_and_clear as pclss
+from utils.inputValidator import reqInput as ri
+from journal.core.convert import converter_entry as ce, converter_title as ct
 
 
 def json_create():
@@ -23,7 +22,7 @@ def json_create():
     ]
 
     filename = f"journal_{title_date}"
-    json_path = JSON_DIR / f"{filename}.json"
+    json_path = JJSON_DIR / f"{filename}.json"
     with open(json_path, "w") as file:
         json.dump(json_tempt, file, indent=4)
 
@@ -35,7 +34,7 @@ def json_create():
 def json_update():
     #Autocomplete function
     def completer(text, state):
-        files = [f.name for f in JSON_DIR.iterdir() if f.name.startswith(text)]
+        files = [f.name for f in JJSON_DIR.iterdir() if f.name.startswith(text)]
         if state < len(files):
             return files[state]
         return None
@@ -44,7 +43,7 @@ def json_update():
     #load the created file
     input_name = ri("Input filename: ").strip().lower()
     filename = f"{input_name}"
-    json_path = JSON_DIR / f"{filename}"
+    json_path = JJSON_DIR / f"{filename}"
 
     with open(json_path, "r") as file:
         data = json.load(file)

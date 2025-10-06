@@ -1,17 +1,14 @@
-from config import JSON_DIR, ri, pt, rm, JOURNAL_DIR
-from core.convert import converter_entry as ce, converter_title as ct, convert
-from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
-# from utils.progress_status import get_progress_optional,get_status_optional
-from utils.inputValidator import input_edit, input_tags
-from pathlib import Path
 import json
 from datetime import datetime
-import readline
+from config import JJSON_DIR, ri, pt, rm, JOURNAL_DIR
+from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
+from utils.inputValidator import input_menu
+from journal.core.convert import converter_entry as ce, converter_title as ct, convert
 
 def edit_entries():
     date_call = datetime.today()
     filename = date_call.strftime("%d-%m-%Y")
-    json_path = JSON_DIR / f"{filename}.json"
+    json_path = JJSON_DIR / f"{filename}.json"
     
     with open(json_path, "r") as f:
         data = json.load(f)
@@ -59,11 +56,13 @@ def edit_entries():
                 "Journal",
                 "!"
             ]
-            edit_choice = input_edit("> ", valid_keys=VALID_KEYS, visible_choices=VISIBLE_CHOICES).strip().lower()
+            edit_choice = input_menu("> ", valid_keys=VALID_KEYS, visible_choices=VISIBLE_CHOICES).strip().lower()
+            
             if edit_choice == "t" or "tags":
-                edit_entry['Tags'] = input_tags(f"New Tags: ") or edit_entry['Tags']
+                TAGS_OPTION = ["Issue","Notes","!"]
+                edit_entry['Tags'] = input_menu(f"New Tags: ",valid_keys=TAGS_OPTION,visible_choices=TAGS_OPTION) or edit_entry['Tags']
             elif edit_choice == "j" or "journal":
-                edit_entry['Journal'] = input(f"New Journal: ") or edit_entry['Journal']
+                edit_entry['Journal'] = ri(f"New Journal: ") or edit_entry['Journal']
             else:
                 clss()
                 print(f"'{edit_choice}' is an Invalid option. Please enter the correct options.")

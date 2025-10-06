@@ -1,5 +1,5 @@
 #Title for the program
-def print_title(title, width=31, char="="):
+def print_title(title, width=45, char="="):
     styled = char * width + "\n"
     styled += f"\033[1;36m{title.center(width)}\033[0m\n"
     styled += char * width

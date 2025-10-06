@@ -1,23 +1,26 @@
-from core.create import json_create as jc
-from core.update import json_update as ju
-from core.lists import list_log as ll
-from core.delete import delete as dl
-from core.quit  import quit_program as qp
-from core.export2excell import export_to_excel as ex
-from core.read import read_log as rd
-from core.entryListJSON import list_entries as le
-from core.edit import edit_entries as ee
-from core.convert import convert_whole as cw
-from utils.uxHelper import clear_screen as clss
-from config import LOG_DIR, JSON_DIR, ri, pt, datetime, rm
-from utils.inputValidator import input_menu
 from pathlib import Path
-import time
+
+from config import LOG_DIR, LJSON_DIR, pt, rm
+from core.quit  import quit_program as qp
+from utils.uxHelper import clear_screen as clss
+from utils.inputValidator import input_menu
+
+from logger.core.create import json_create as jc
+from logger.core.update import json_update as ju
+from logger.core.lists import list_log as ll
+from logger.core.delete import delete as dl
+from logger.core.export2excell import export_to_excel as ex
+from logger.core.read import read_log as rd
+from logger.core.entryListJSON import list_entries as le
+from logger.core.edit import edit_entries as ee
+from logger.core.convert import convert_whole as cw
+
 
 def main():
     clss()
     Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
-    Path(JSON_DIR).mkdir(parents=True, exist_ok=True)
+    Path(LJSON_DIR).mkdir(parents=True, exist_ok=True)
+    
     #menu actions dictionary
     MENU_ACTIONS = {
         "n" : jc,
@@ -78,10 +81,7 @@ def main():
         
             if action:
                 action() #Call the corresponding function!
-            # else:
-            #     clss()
-            #     print(f"'{choice}' is an Invalid option. Please enter the correct options.")
-            # print("hello")
+            
         except rm:
             continue
         except KeyboardInterrupt:

@@ -1,15 +1,14 @@
-from core.convert import converter_title as ct
-from config import LOG_DIR, JSON_DIR, ri,pt,lt, datetime, rm
-from pathlib import Path
-import os
 import json
+from pathlib import Path
+from config import LOG_DIR, LJSON_DIR, ri,pt,lt, datetime, rm
+from logger.core.convert import converter_title as ct
 
 def json_create():
     pt("Create Log")
     while True:
         print("Insert '!' to return to main menu")            
         filename = ri("Input file name to generate (without .log): ").lower()
-        json_path = JSON_DIR / f"{filename}.json"
+        json_path = LJSON_DIR / f"{filename}.json"
 
         if json_path.exists(): #change this to use pathlib later
             print("The file is already exists, Try a different name.")

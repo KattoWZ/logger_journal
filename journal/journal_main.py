@@ -1,20 +1,19 @@
-from core.quit import quit_program as qp
-# from core.jsonjournal import json_create as jc, json_update as ju
-from core.create import create_journal as jc
-from core.update import update_journal as ju
-from core.edit import edit_entries as ee
-from core.convert import convert_whole as cw
-from utils.uxHelper import clear_screen as clss
-from config import JOURNAL_DIR, pt, rm,JSON_DIR
-from utils.inputValidator import input_menu
-
-from datetime import datetime
 from pathlib import Path
+
+from config import JOURNAL_DIR, pt, rm,JJSON_DIR
+from utils.uxHelper import clear_screen as clss
+from utils.inputValidator import input_menu
+from core.quit import quit_program as qp
+
+from journal.core.create import create_journal as jc
+from journal.core.update import update_journal as ju
+from journal.core.edit import edit_entries as ee
+from journal.core.convert import convert_whole as cw
 
 
 def main():
     Path(JOURNAL_DIR).mkdir(parents=True, exist_ok=True)
-    Path(JSON_DIR).mkdir(parents=True, exist_ok=True)
+    Path(JJSON_DIR).mkdir(parents=True, exist_ok=True)
     MENU_ACTIONS = {
         "n" : jc,
         "new journal" :jc,
@@ -26,7 +25,6 @@ def main():
         "edit" : ee,
         "c" : cw,
         "convert json to journal" : cw
-
     }
 
     while True:

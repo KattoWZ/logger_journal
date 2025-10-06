@@ -1,14 +1,13 @@
-from config import JSON_DIR, ri, pt, rm, LOG_DIR
-from core.convert import converter_entry as ce, converter_title as ct, convert
-from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
-from utils.progress_status import get_progress_optional,get_status_optional
-from pathlib import Path
 import json
-import readline
+from config import LJSON_DIR, ri, pt, rm, LOG_DIR
+from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
+from utils.inputValidator import input_menu, input_filename
+from logger.core.convert import converter_entry as ce, converter_title as ct, convert
+from logger.utils.progress_status import get_progress_optional
 
 def edit_entries():
-    filename = ri("Input the file name: ").strip().lower()
-    json_path = JSON_DIR / f"{filename}.json"
+    filename = input_filename("Input the file name: ",LJSON_DIR)
+    json_path = LJSON_DIR / f"{filename}.json"
     with open(json_path, "r") as f:
         data = json.load(f)
         
@@ -32,8 +31,9 @@ def edit_entries():
             print(f"Progress : {progress}")
             print(f"Detail   : {detail}")
             print("-" * 40)
-    
-        choice = int(ri("\nWhich task number do you want to edit? "))-1 #-1 is because index start with 0, not 1
+        
+        numbers = [str(i) for i, _ in enumerate(data[0]["Content"], start=1)]
+        choice = int(input_menu("\nWhich task number do you want to edit? ",valid_keys=numbers, visible_choices=numbers))-1 #-1 is because index start with 0, not 1
         edit_entry = data[0]["Content"][choice]
         
         while True:
@@ -52,23 +52,27 @@ def edit_entries():
             print(" (T) Task")
             print(" (S) Status and Progress")
             print(" (D) Detail")
-    
-            edit_choice = ri("> ").strip().lower()
-            if edit_choice == "t":
+
+            EDIT_OPTIONS = ["Task", "Status and Progress", "Detail","!"]
+            edit_choice = input_menu("> ", valid_keys=EDIT_OPTIONS, visible_choices=EDIT_OPTIONS).strip()
+            if edit_choice in ("t", "Task"):
                 edit_entry['Task'] = input(f"New Task (current: {edit_entry['Task']}): ") or edit_entry['Task']
-            elif edit_choice == "s":
+            
+            elif edit_choice in ("s" ,"Status and Progress"):
                 print(f"Current Status: {edit_entry['Status']}")
-                edit_entry['Status'] = get_status_optional() or edit_entry['Status']
+                STATUS_OPTION = ["On Progress", "Finish", "Plan", "Canceled","!"]
+                edit_entry['Status'] = input_menu("Choose new Status (press TAB): ",valid_keys=STATUS_OPTION, visible_choices=STATUS_OPTION) or edit_entry['Status']
                 print(f"New Status: {edit_entry['Status']}")
         
                 print(f"Current Progress: {edit_entry['Progress']}")
                 edit_entry['Progress'] = get_progress_optional(edit_entry['Status'], edit_entry['Progress'])
                 print(f"New Progress: {edit_entry['Progress']}")
-            elif edit_choice == "d":
+
+            elif edit_choice in ("d" , "Detail"):
                  edit_entry['Detail'] = input(f"New Detail (current: {edit_entry['Detail']}): ") or edit_entry['Detail']
-    
+                 print(f"New Detail: {edit_entry['Detail']}")
             else:
-                clss()
+                
                 print(f"'{edit_choice}' is an Invalid option. Please enter the correct options.")
             
         

@@ -1,4 +1,4 @@
-from config import  LOG_DIR, ri, pt, JSON_DIR
+from config import  LOG_DIR, ri, pt, LJSON_DIR
 from utils.inputValidator import input_filename
 from utils.uxHelper import clear_screen as clss
 from pathlib import Path
@@ -7,9 +7,9 @@ from pathlib import Path
 def delete():
     print("Insert '!' to return to main menu")            
     pt("Purge the FILE")
-    filename = input_filename("Insert the name of the file to be removed: ", JSON_DIR).strip().lower()
+    filename = input_filename("Insert the name of the file to be removed: ", LJSON_DIR).strip().lower()
     file_path = LOG_DIR / f"{filename}.log"
-    json_path = JSON_DIR / f"{filename}.json"
+    json_path = LJSON_DIR / f"{filename}.json"
     if file_path.exists() and json_path.exists():
         print("\n===============================")
         print(f"Log file '{filename}.log' is FOUND")

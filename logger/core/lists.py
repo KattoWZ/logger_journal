@@ -1,6 +1,6 @@
-from utils.uxHelper import clear_screen as clss, pause
-from config import  LOG_DIR, ri, pt
 import os
+from config import  LOG_DIR, ri, pt
+from utils.uxHelper import clear_screen as clss, pause
 
 #listing existing log file
 def list_log():

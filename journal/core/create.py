@@ -1,8 +1,8 @@
-from config import  JOURNAL_DIR, ri, pt, JSON_DIR
-from utils.uxHelper import pause_and_clear as pclss
-from core.convert import converter_title
-from datetime import datetime, date
 import json
+from datetime import datetime, date
+from config import  JOURNAL_DIR, ri, pt, JJSON_DIR
+from utils.uxHelper import pause_and_clear as pclss
+from journal.core.convert import converter_title
 
 #creating a journal file
 def create_journal():
@@ -12,7 +12,7 @@ def create_journal():
         date_call = date.today()
         filename = date_call.strftime("%d-%m-%Y") 
         file_path = JOURNAL_DIR / f"{filename}.journal"
-        json_path = JSON_DIR / f"{filename}.json"
+        json_path = JJSON_DIR / f"{filename}.json"
 
         if json_path.exists():
             print("The journal file is already exists, you already made one today.")

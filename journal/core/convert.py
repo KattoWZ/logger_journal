@@ -1,6 +1,6 @@
-from config import JOURNAL_DIR, JSON_DIR
-from utils.inputValidator import input_filename
 import json
+from config import JOURNAL_DIR, JJSON_DIR
+from utils.inputValidator import input_filename
 
 def converter_title(json_path):
     try:
@@ -68,8 +68,8 @@ def convert(json_path, raw_path):
 # to convert json file into journal file
 def convert_whole():
     # ea()
-    filename = input_filename("Input the file to convert to .log from .json: ",JSON_DIR).strip().lower()
-    json_path = JSON_DIR / f"{filename}.json"
+    filename = input_filename("Input the file to convert to .log from .json: ",JJSON_DIR).strip().lower()
+    json_path = JJSON_DIR / f"{filename}.json"
     raw_path = JOURNAL_DIR / f"{filename}.journal"
     #convert the header first        
     convert(json_path, raw_path) 

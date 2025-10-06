@@ -1,13 +1,13 @@
-from utils.inputValidator import input_filename
-from config import JSON_DIR, pt, rm
-from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
-from pathlib import Path
 import json
+from pathlib import Path
+from config import LJSON_DIR, pt, rm
+from utils.inputValidator import input_filename
+from utils.uxHelper import pause_and_clear as pcl, clear_screen as clss
 
 
 def list_entries():
-    filename = input_filename("Input the file name: ", JSON_DIR).strip().lower()
-    json_path = JSON_DIR / f"{filename}.json"
+    filename = input_filename("Input the file name: ", LJSON_DIR).strip().lower()
+    json_path = LJSON_DIR / f"{filename}.json"
     with open(json_path, "r") as f:
         data = json.load(f)
         
